@@ -1,0 +1,21 @@
+* text=auto
+*.cs text
+*.shader text
+*.cginc text
+*.js text
+*.c text
+*.h text
+*.cpp text
+*.mm text
+*.meta text
+*.prefab text
+*.jpg binary
+*.png binary
+*.fbx binary
+*.psd binary
+*.blend binary
+*.sln text eol=crlf
+# Treat gamedata as binary files. This will ensure that git does not
+# attempt to change line endings as part of commits or checkouts and
+# lead to invalid hashes.
+Assets/StreamingAssets/gamedata/**.json binary
