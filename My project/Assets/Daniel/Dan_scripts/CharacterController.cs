@@ -10,11 +10,11 @@ public class CharacterController : MonoBehaviour
 
 
 
-    Rigidbody body;
+    Rigidbody2D body;
 
     private void Awake()
     {
-        body = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody2D>();
 
     }
 
