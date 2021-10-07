@@ -1,55 +1,55 @@
 fileFormatVersion: 2
-guid: c0b427e01976d714fbbb26acb39f49d8
+guid: b1dbd7e9599cfce40a1b0c08ffa36b69
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 904927017825268944
-    second: Hades_Tileset_3_0
+      213: 4252724892801574777
+    second: Hades_Tileset_2 - Copy_0
   - first:
-      213: 2893140652133899636
-    second: Hades_Tileset_3_1
+      213: -6816766308597603583
+    second: Hades_Tileset_2 - Copy_1
   - first:
-      213: -3126898254424256425
-    second: Hades_Tileset_3_2
+      213: -6361619101744641872
+    second: Hades_Tileset_2 - Copy_2
   - first:
-      213: -7635161299134784877
-    second: Hades_Tileset_3_3
+      213: -8486223155042550166
+    second: Hades_Tileset_2 - Copy_3
   - first:
-      213: -3915781649970319246
-    second: Hades_Tileset_3_4
+      213: 8536820312021055328
+    second: Hades_Tileset_2 - Copy_4
   - first:
-      213: 5487138240456018342
-    second: Hades_Tileset_3_5
+      213: 3445059898119710774
+    second: Hades_Tileset_2 - Copy_5
   - first:
-      213: -7919803505496524496
-    second: Hades_Tileset_3_6
+      213: 1504567239494948305
+    second: Hades_Tileset_2 - Copy_6
   - first:
-      213: -3087891004338212488
-    second: Hades_Tileset_3_7
+      213: -5894203889761838824
+    second: Hades_Tileset_2 - Copy_7
   - first:
-      213: -3834815653647235921
-    second: Hades_Tileset_3_8
+      213: -2391118551321582112
+    second: Hades_Tileset_2 - Copy_8
   - first:
-      213: -4341209529385773415
-    second: Hades_Tileset_3_9
+      213: 2341349723966584601
+    second: Hades_Tileset_2 - Copy_9
   - first:
-      213: -3765022920055432625
-    second: Hades_Tileset_3_10
+      213: 6885928561545675751
+    second: Hades_Tileset_2 - Copy_10
   - first:
-      213: -5452527794114383617
-    second: Hades_Tileset_3_11
+      213: 3488171609298967156
+    second: Hades_Tileset_2 - Copy_11
   - first:
-      213: -6625214325559180160
-    second: Hades_Tileset_3_12
+      213: -7251050317943916336
+    second: Hades_Tileset_2 - Copy_12
   - first:
-      213: 4393201850464570246
-    second: Hades_Tileset_3_13
+      213: 2378264700051441845
+    second: Hades_Tileset_2 - Copy_13
   - first:
-      213: -6265892059410581777
-    second: Hades_Tileset_3_14
+      213: -5504444191798024681
+    second: Hades_Tileset_2 - Copy_14
   - first:
-      213: -7764188206798306891
-    second: Hades_Tileset_3_15
+      213: -8228159110684788096
+    second: Hades_Tileset_2 - Copy_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -90,8 +90,8 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
-  spriteMeshType: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -187,7 +187,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hades_Tileset_3_0
+      name: Hades_Tileset_2 - Copy_0
       rect:
         serializedVersion: 2
         x: 0
@@ -201,14 +201,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d4f0250452fe8c00800000000000000
-      internalID: 904927017825268944
+      spriteID: 97726e212c6b40b30800000000000000
+      internalID: 4252724892801574777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_1
+      name: Hades_Tileset_2 - Copy_1
       rect:
         serializedVersion: 2
         x: 32
@@ -222,14 +222,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47ddea73810862820800000000000000
-      internalID: 2893140652133899636
+      spriteID: 103603bb82bf561a0800000000000000
+      internalID: -6816766308597603583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_2
+      name: Hades_Tileset_2 - Copy_2
       rect:
         serializedVersion: 2
         x: 64
@@ -243,14 +243,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 750d048ca960b94d0800000000000000
-      internalID: -3126898254424256425
+      spriteID: 0b8cb2cd12df6b7a0800000000000000
+      internalID: -6361619101744641872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_3
+      name: Hades_Tileset_2 - Copy_3
       rect:
         serializedVersion: 2
         x: 96
@@ -264,14 +264,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39ad24250457a0690800000000000000
-      internalID: -7635161299134784877
+      spriteID: a6e7efe9001ea3a80800000000000000
+      internalID: -8486223155042550166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_4
+      name: Hades_Tileset_2 - Copy_4
       rect:
         serializedVersion: 2
         x: 0
@@ -285,14 +285,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 270b687065958a9c0800000000000000
-      internalID: -3915781649970319246
+      spriteID: 067ba5108d0e87670800000000000000
+      internalID: 8536820312021055328
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_5
+      name: Hades_Tileset_2 - Copy_5
       rect:
         serializedVersion: 2
         x: 32
@@ -306,14 +306,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a9c7d7582b362c40800000000000000
-      internalID: 5487138240456018342
+      spriteID: 6386e5189bf4fcf20800000000000000
+      internalID: 3445059898119710774
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_6
+      name: Hades_Tileset_2 - Copy_6
       rect:
         serializedVersion: 2
         x: 64
@@ -327,14 +327,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0397cf33ca4371290800000000000000
-      internalID: -7919803505496524496
+      spriteID: 1d559caceeb41e410800000000000000
+      internalID: 1504567239494948305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_7
+      name: Hades_Tileset_2 - Copy_7
       rect:
         serializedVersion: 2
         x: 96
@@ -348,14 +348,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 871fb4ded7b9525d0800000000000000
-      internalID: -3087891004338212488
+      spriteID: 81915058ac4933ea0800000000000000
+      internalID: -5894203889761838824
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_8
+      name: Hades_Tileset_2 - Copy_8
       rect:
         serializedVersion: 2
         x: 0
@@ -369,14 +369,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa4cf311b7ff7cac0800000000000000
-      internalID: -3834815653647235921
+      spriteID: 0e561a4a85a01ded0800000000000000
+      internalID: -2391118551321582112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_9
+      name: Hades_Tileset_2 - Copy_9
       rect:
         serializedVersion: 2
         x: 32
@@ -390,14 +390,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9969b690fece0c3c0800000000000000
-      internalID: -4341209529385773415
+      spriteID: 917bcff3b252e7020800000000000000
+      internalID: 2341349723966584601
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_10
+      name: Hades_Tileset_2 - Copy_10
       rect:
         serializedVersion: 2
         x: 64
@@ -411,14 +411,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4a54e62a93ffbbc0800000000000000
-      internalID: -3765022920055432625
+      spriteID: 7e385a32b8bbf8f50800000000000000
+      internalID: 6885928561545675751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_11
+      name: Hades_Tileset_2 - Copy_11
       rect:
         serializedVersion: 2
         x: 96
@@ -432,14 +432,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff03ed72cdab454b0800000000000000
-      internalID: -5452527794114383617
+      spriteID: 47a1ed7f899786030800000000000000
+      internalID: 3488171609298967156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_12
+      name: Hades_Tileset_2 - Copy_12
       rect:
         serializedVersion: 2
         x: 0
@@ -453,14 +453,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 084473c3ca28e04a0800000000000000
-      internalID: -6625214325559180160
+      spriteID: 0d8387e47281f5b90800000000000000
+      internalID: -7251050317943916336
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_13
+      name: Hades_Tileset_2 - Copy_13
       rect:
         serializedVersion: 2
         x: 32
@@ -474,14 +474,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 68b878b8ec9c7fc30800000000000000
-      internalID: 4393201850464570246
+      spriteID: 5b8ca64e42b410120800000000000000
+      internalID: 2378264700051441845
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_14
+      name: Hades_Tileset_2 - Copy_14
       rect:
         serializedVersion: 2
         x: 64
@@ -495,14 +495,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe634edbe541b09a0800000000000000
-      internalID: -6265892059410581777
+      spriteID: 716aaeddb294c93b0800000000000000
+      internalID: -5504444191798024681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Tileset_3_15
+      name: Hades_Tileset_2 - Copy_15
       rect:
         serializedVersion: 2
         x: 96
@@ -516,8 +516,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b1828c56ff004490800000000000000
-      internalID: -7764188206798306891
+      spriteID: 08a3d3c22e4bfcd80800000000000000
+      internalID: -8228159110684788096
       vertices: []
       indices: 
       edges: []
@@ -525,7 +525,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 79be7dd841b5a0046a091818030ac60d
     internalID: 0
     vertices: []
     indices: 
