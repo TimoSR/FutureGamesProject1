@@ -73,13 +73,16 @@
       "dependencies": {}
     },
     "com.unity.2d.tilemap.extras": {
-      "version": "file:2d-extras",
+      "version": "https://github.com/Unity-Technologies/2d-extras.git#master",
       "depth": 0,
-      "source": "embedded",
+      "source": "git",
       "dependencies": {
         "com.unity.modules.tilemap": "1.0.0",
-        "com.unity.2d.tilemap": "1.0.0"
-      }
+        "com.unity.2d.tilemap": "1.0.0",
+        "com.unity.ugui": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0"
+      },
+      "hash": "a4096eb16f771f97eb0c039d1b6c71f0ebfbd260"
     },
     "com.unity.collab-proxy": {
       "version": "1.9.0",
