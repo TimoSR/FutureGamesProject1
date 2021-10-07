@@ -9,14 +9,11 @@
     "com.unity.2d.tilemap.extras": {
       "version": "file:2d-extras-1.6.0-preview.1",
       "depth": 0,
-      "source": "git",
+      "source": "embedded",
       "dependencies": {
         "com.unity.modules.tilemap": "1.0.0",
-        "com.unity.2d.tilemap": "1.0.0",
-        "com.unity.ugui": "1.0.0",
-        "com.unity.modules.jsonserialize": "1.0.0"
-      },
-      "hash": "a4096eb16f771f97eb0c039d1b6c71f0ebfbd260"
+        "com.unity.2d.tilemap": "1.0.0"
+      }
     },
     "com.unity.collab-proxy": {
       "version": "1.9.0",
