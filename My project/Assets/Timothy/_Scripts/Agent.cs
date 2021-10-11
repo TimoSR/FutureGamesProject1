@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Agent : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Agent : MonoBehaviour
     public PlayerInput playerInput;
     public AgentAnimation animationManager;
     public AgentRenderer agentRenderer; 
+    
+    [field: SerializeField]
+    float jumpForce = 10f;
 
     private void Awake()
     {
@@ -29,8 +33,8 @@ public class Agent : MonoBehaviour
 
     private void Jump()
     {
-        float jumpVelocity = 10f;
-        rb2d.velocity = Vector2.up * jumpVelocity;
+        
+        rb2d.velocity = Vector2.up * jumpForce;
     }
 
     private void Movement(Vector2 input)
