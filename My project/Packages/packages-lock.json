@@ -1,6 +1,9 @@
 {
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> LevelDesign
     "com.unity.2d.animation": {
       "version": "5.0.8",
       "depth": 1,
@@ -49,8 +52,11 @@
       },
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
 =======
 >>>>>>> GameLogic
+=======
+>>>>>>> LevelDesign
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -58,6 +64,9 @@
       "dependencies": {}
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> LevelDesign
     "com.unity.2d.spriteshape": {
       "version": "5.1.5",
       "depth": 0,
@@ -70,8 +79,17 @@
       },
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
 =======
 >>>>>>> GameLogic
+=======
+    "com.unity.2d.sprite": {
+      "version": "1.0.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
+>>>>>>> LevelDesign
     "com.unity.2d.tilemap": {
       "version": "1.0.0",
       "depth": 1,
