@@ -22,7 +22,15 @@ public class Agent : MonoBehaviour
     private void Start()
     {
         playerInput.OnMovement += Movement;
-        playerInput.OnMovement += agentRenderer.FaceDirection; 
+        playerInput.OnMovement += agentRenderer.FaceDirection;
+        playerInput.OnJumpPressed += Jump;
+
+    }
+
+    private void Jump()
+    {
+        float jumpVelocity = 10f;
+        rb2d.velocity = Vector2.up * jumpVelocity;
     }
 
     private void Movement(Vector2 input)

@@ -12,7 +12,6 @@ public class AgentRenderer : MonoBehaviour
         if (input.x < 0)
         {
             
-
             transform.parent.localScale = new Vector3(-1 * Mathf.Abs(localScale.x), localScale.y, localScale.z);
             
         }
