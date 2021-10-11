@@ -8,28 +8,43 @@ public class Agent : MonoBehaviour
 
     public Rigidbody2D rb2d;
     public PlayerInput playerInput;
-    public PlayerDebugger PlayerDebugger;
+    public AgentAnimation animationManager;
+    public AgentRenderer agentRenderer; 
 
     private void Awake()
     {
         playerInput = GetComponentInParent<PlayerInput>();
         rb2d = GetComponent<Rigidbody2D>();
-        PlayerDebugger = GetComponent<PlayerDebugger>();
+        animationManager = GetComponentInChildren<AgentAnimation>();
+        agentRenderer = GetComponentInChildren<AgentRenderer>();
     }
 
     private void Start()
     {
-        playerInput.OnMovement += MovementCalculation;
+        playerInput.OnMovement += Movement;
+        playerInput.OnMovement += agentRenderer.FaceDirection; 
     }
 
-    private void MovementCalculation(Vector2 input)
+    private void Movement(Vector2 input)
     {
         if (Mathf.Abs(input.x) > 0)
         {
-            rb2d.velocity = new Vector2(input.x*5, rb2d.velocity.y);
+            if (Mathf.Abs(rb2d.velocity.x) < 0.01f)
+            {
+                animationManager.PlayAnimation(AnimationType.run);
+            }
+            
+            rb2d.velocity = new Vector2(input.x*10, rb2d.velocity.y);
+            
         }
         else
         {
+            
+            if (Mathf.Abs(rb2d.velocity.x) > 0)
+            {
+                animationManager.PlayAnimation(AnimationType.idle);
+            }
+            
             rb2d.velocity = new Vector2(0, rb2d.velocity.y);
         }
     }

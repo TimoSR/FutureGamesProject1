@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDebugger : MonoBehaviour
+public class AgentDebugger : MonoBehaviour
 {
     
     [Header("Collisions")]
