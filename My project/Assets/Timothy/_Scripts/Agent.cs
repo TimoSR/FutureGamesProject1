@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class Agent : MonoBehaviour
 {
-
+    
     public Rigidbody2D rb2d;
     public PlayerInput playerInput;
     public AgentAnimation animationManager;
@@ -28,7 +28,6 @@ public class Agent : MonoBehaviour
         playerInput.OnMovement += Movement;
         playerInput.OnMovement += agentRenderer.FaceDirection;
         playerInput.OnJumpPressed += Jump;
-
     }
 
     private void Jump()
