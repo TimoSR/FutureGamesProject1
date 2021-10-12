@@ -86,7 +86,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 2
     mipBias: 0
     wrapU: 1
@@ -261,7 +261,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -277,33 +277,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Moving_Blocks_4
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 85372d7066d334b60800000000000000
-      internalID: 7729088893925094232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hades_Moving_Blocks_5
       rect:
         serializedVersion: 2
         x: 96
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -319,33 +298,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Moving_Blocks_6
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f4138125f50d200e0800000000000000
-      internalID: -2305050951442484913
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hades_Moving_Blocks_7
       rect:
         serializedVersion: 2
         x: 192
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -361,33 +319,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Moving_Blocks_8
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 071721fd2db75c310800000000000000
-      internalID: 1424681002748506480
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hades_Moving_Blocks_9
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 96
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -403,54 +340,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Moving_Blocks_10
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de9dbb24596aaf4d0800000000000000
-      internalID: -3099982233491219987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hades_Moving_Blocks_11
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd19b2d8f5f2eec80800000000000000
-      internalID: -8291637776505663013
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hades_Moving_Blocks_12
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
+        width: 96
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -466,54 +361,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Hades_Moving_Blocks_13
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: afbfac52c988b02e0800000000000000
-      internalID: -2158481392163685382
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hades_Moving_Blocks_14
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 23c27cb0dd1997150800000000000000
-      internalID: 5870883967825554482
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Hades_Moving_Blocks_15
       rect:
         serializedVersion: 2
         x: 192
         y: 0
-        width: 32
+        width: 96
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -524,48 +377,6 @@ TextureImporter:
       bones: []
       spriteID: e72769184a0660950800000000000000
       internalID: 6414920978900873854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hades_Moving_Blocks_16
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91928bc49593ea350800000000000000
-      internalID: 6029820006797682969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Hades_Moving_Blocks_17
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e3dd8f570b397d780800000000000000
-      internalID: -8658289372493718210
       vertices: []
       indices: 
       edges: []
