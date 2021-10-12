@@ -9,10 +9,11 @@ public enum AnimationStates
     Walk,
     Attack
 }
-public enum AttackStates
+public enum ActionStates
 {
     None,
-    Attack
+    Attack,
+    Sleep
 }
 
 public class EnemyController : MonoBehaviour
@@ -23,23 +24,23 @@ public class EnemyController : MonoBehaviour
 
     // States
     public AnimationStates animState;
-    public AttackStates attackState;
+    public ActionStates actionState;
 
-    public GameObject target;
+    private GameObject target;
+    public bool canSeeTarget;
     public bool canWalk;
-    [SerializeField] private bool canSeeTarget;
-    [SerializeField] private float speed;
+    public bool sleeping;
 
+    [SerializeField] private float speed;
     private float directionX;
     private Vector3 moveTowardsPosition;
     private Vector3 pointAPosition;
     private Vector3 pointBPosition;
 
-    [Header("Field of View")] //Field of view still a work in progress, currently only works in 90 degrees and doesnt change vertically
-    [SerializeField] private float fov = 90f;
-    [SerializeField] private float viewDistance = 1f;
-    [SerializeField] private int rayCount = 20;
-    private float angleIncrease;
+    //Field of view still a work in progress
+    [SerializeField] private float fov = 20f;
+    [SerializeField] private float viewDistance = 5f;
+    private int rayCount = 60;
     private Vector3 fovDirection;
     private Vector3 fovStartPoint;
     private Vector3 fovEndPoint;
@@ -51,13 +52,15 @@ public class EnemyController : MonoBehaviour
     {
         animState = AnimationStates.Idle;
         canWalk = true;
-        angleIncrease = fov/rayCount;
         animator = GetComponent<Animator>();
     }
     void Start()
     {
-        fovStartPoint = new Vector3(Mathf.Sin((fov+(fov/2))*Mathf.Deg2Rad), Mathf.Cos((fov+(fov/2))*Mathf.Deg2Rad)).normalized;
-        fovEndPoint = new Vector3(Mathf.Sin((fov-(fov/2))*Mathf.Deg2Rad), Mathf.Cos((fov-(fov/2))*Mathf.Deg2Rad)).normalized;
+
+        fovStartPoint = new Vector3(Mathf.Sin((180-((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((180-((180-fov)/2))*Mathf.Deg2Rad)).normalized;
+        fovEndPoint = new Vector3(Mathf.Sin((0+((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((0+((180-fov)/2))*Mathf.Deg2Rad)).normalized;
+
+        // Does this so that you won't get an error if you don't give the thing pointA and pointB positions
         if (pointA == null)
         {
             pointAPosition = new Vector3(transform.position.x, transform.position.y);
@@ -82,6 +85,7 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetInteger("AnimationState", (int)animState);
         GetDirection();
+
         if (directionX != 0 && canWalk)
         {
             animState = AnimationStates.Walk;
@@ -91,9 +95,27 @@ public class EnemyController : MonoBehaviour
         {
             animState = AnimationStates.Idle;
         }
-        SetUpFOV();
 
+        SetUpFOV();
         Flip();
+
+        if (sleeping)
+        {
+            StartCoroutine(Sleep(2f));
+            sleeping = false;
+        }
+
+        if (target != null)
+        {
+            if (Mathf.Abs(target.transform.position.x - transform.position.x) > viewDistance || Mathf.Abs(target.transform.position.y - transform.position.y) > viewDistance)
+            {
+                canSeeTarget = false;
+            }
+        }
+        if (target == null)
+        {
+            canSeeTarget = false;
+        }
     }
 
     void GetDirection()
@@ -109,28 +131,51 @@ public class EnemyController : MonoBehaviour
         }
         else if (transform.position.x == moveTowardsPosition.x)
         {
-            
             directionX = 0;
             SwitchPoint();
         }
 
 
-        if (directionX == 0)
+        if (directionX == 0) 
         {
             animState = AnimationStates.Idle;
         }
     }
-    
+
     void SetUpFOV()
     {
         for(float i = 0; i < rayCount; i++)
         {
             fovDirection = (fovStartPoint + (increase*i)).normalized;
+
             RaycastHit hit;
             Debug.DrawRay(transform.position, fovDirection * viewDistance, Color.red);
             if(Physics.Raycast(transform.position, fovDirection, out hit, viewDistance))
             {
-                
+                if (hit.transform.gameObject.tag == "Player")
+                {
+                    if (target == null)
+                    {
+                        target = hit.transform.gameObject;
+                    }
+                    moveTowardsPosition = target.transform.position;
+                    canSeeTarget = true;
+                }
+            }
+            if (i < 2)
+            {
+                if (!Physics.Raycast(transform.position, fovDirection, viewDistance))
+                {
+                    if (canSeeTarget == true)
+                    {
+                        canWalk = false;
+                    }
+                    else
+                    {
+                        SwitchPoint();
+                        canWalk = true;
+                    }
+                }
             }
         }
     }
@@ -145,6 +190,10 @@ public class EnemyController : MonoBehaviour
         {
             moveTowardsPosition = pointAPosition;
         }
+        else
+        {
+            moveTowardsPosition = pointAPosition;
+        }
     }
     void Flip()
     {
@@ -152,15 +201,37 @@ public class EnemyController : MonoBehaviour
         {
             // Flip enemy and FOV
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            fovStartPoint = new Vector3(Mathf.Sin((fov+(fov/2))*Mathf.Deg2Rad), Mathf.Cos((fov+(fov/2))*Mathf.Deg2Rad)).normalized;
-            fovEndPoint = new Vector3(Mathf.Sin((fov-(fov/2))*Mathf.Deg2Rad), Mathf.Cos((fov-(fov/2))*Mathf.Deg2Rad)).normalized;
+            fovStartPoint = new Vector3(Mathf.Sin((180-((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((180-((180-fov)/2))*Mathf.Deg2Rad)).normalized;
+            fovEndPoint = new Vector3(Mathf.Sin((0+((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((0+((180-fov)/2))*Mathf.Deg2Rad)).normalized;
         }
         else if (directionX == -1)
         {
             // Flip enemy and FOV
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            fovStartPoint = new Vector3(Mathf.Sin((-fov-(fov/2))*Mathf.Deg2Rad), Mathf.Cos((-fov-(fov/2))*Mathf.Deg2Rad)).normalized;
-            fovEndPoint = new Vector3(Mathf.Sin((-fov+(fov/2))*Mathf.Deg2Rad), Mathf.Cos((-fov+(fov/2))*Mathf.Deg2Rad)).normalized;
+            fovStartPoint = new Vector3(Mathf.Sin((180+((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((180+((180-fov)/2))*Mathf.Deg2Rad)).normalized;
+            fovEndPoint = new Vector3(Mathf.Sin((0-((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((0-((180-fov)/2))*Mathf.Deg2Rad)).normalized;
         }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Debug.Log("konkey dong");
+            // Kill Player
+            // Destroying the game object for now but implement a death function for the player if needed
+            Destroy(other.gameObject);
+
+            moveTowardsPosition = pointAPosition;
+        }
+    }
+
+    public IEnumerator Sleep(float sleepTime)
+    {
+        actionState = ActionStates.Sleep;
+        canWalk = false;
+        yield return new WaitForSeconds(sleepTime);
+        actionState = ActionStates.None;
+        canWalk = true;
     }
 }
