@@ -29,6 +29,7 @@ public class DoorLogic : MonoBehaviour
             if(thePlayer.KeyFollowPoint != null)
             {
                 thePlayer.followingKey.objectToFollow = this.transform;
+                waitingToOpen = true;
             }
         }
     }
@@ -40,10 +41,10 @@ public class DoorLogic : MonoBehaviour
             waitingToOpen = false;
             doorOpen = true;
             thePlayer.followingKey.gameObject.SetActive(false);
-            thePlayer.followingKey = null;
-            //gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
+            //thePlayer.followingKey = null;
+            gameObject.transform.position = new Vector3(transform.position.x, transform.position.y + 2, transform.position.z);
             //gameObject.transform.Rotate(0, 35, 0, Space.World);
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
 
         }
     }
