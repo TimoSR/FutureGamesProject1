@@ -32,7 +32,6 @@ public class Agent : MonoBehaviour
         playerInput.OnMovement += Movement;
         playerInput.OnMovement += agentRenderer.FaceDirection;
         playerInput.OnJumpPressed += Jump;
-
     }
 
     private void Jump()
