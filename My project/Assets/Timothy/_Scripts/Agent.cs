@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class Agent : MonoBehaviour
 {
+    [field: SerializeField] public Transform KeyFollowPoint;
+    public KeyLogic followingKey;
+
 
     [field: SerializeField] private LayerMask _layerMask;
     [field: SerializeField] private bool debugMode;
@@ -14,6 +17,7 @@ public class Agent : MonoBehaviour
     public AgentAnimation animationManager;
     public AgentRenderer agentRenderer;
     public BoxCollider2D boxCollider2D;
+    
 
     [field: SerializeField]
     float jumpForce = 10f;
