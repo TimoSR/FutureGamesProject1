@@ -7,11 +7,6 @@ public enum AnimationStates
     None,
     Idle,
     Walk,
-    Attack
-}
-public enum ActionStates
-{
-    None,
     Attack,
     Sleep
 }
@@ -24,7 +19,6 @@ public class EnemyController : MonoBehaviour
 
     // States
     public AnimationStates animState;
-    public ActionStates actionState;
 
     private GameObject target;
     public bool canSeeTarget;
@@ -48,11 +42,14 @@ public class EnemyController : MonoBehaviour
 
     Animator animator;
 
+    [SerializeField] private float sleepTimer = 2f;
+    [SerializeField] private Vector3 fovOriginOffset = Vector3.zero;
+
     void Awake()
     {
         animState = AnimationStates.Idle;
         canWalk = true;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
     void Start()
     {
@@ -101,8 +98,7 @@ public class EnemyController : MonoBehaviour
 
         if (sleeping)
         {
-            StartCoroutine(Sleep(2f));
-            sleeping = false;
+            StartCoroutine(Sleep(sleepTimer));
         }
 
         if (target != null)
@@ -148,9 +144,12 @@ public class EnemyController : MonoBehaviour
         {
             fovDirection = (fovStartPoint + (increase*i)).normalized;
 
-            RaycastHit hit;
-            Debug.DrawRay(transform.position, fovDirection * viewDistance, Color.red);
-            if(Physics.Raycast(transform.position, fovDirection, out hit, viewDistance))
+            RaycastHit2D hit = Physics2D.Raycast(transform.position+ fovOriginOffset, fovDirection, viewDistance, 7);
+
+
+            //RaycastHit hit; Physics.Raycast(transform.position, fovDirection, out hit, viewDistance)
+            Debug.DrawRay(transform.position + fovOriginOffset, fovDirection * viewDistance, Color.red);
+            if(hit)
             {
                 if (hit.transform.gameObject.tag == "Player")
                 {
@@ -164,7 +163,7 @@ public class EnemyController : MonoBehaviour
             }
             if (i < 2)
             {
-                if (!Physics.Raycast(transform.position, fovDirection, viewDistance))
+                if (!hit)
                 {
                     if (canSeeTarget == true)
                     {
@@ -213,7 +212,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
         {
@@ -228,10 +227,10 @@ public class EnemyController : MonoBehaviour
 
     public IEnumerator Sleep(float sleepTime)
     {
-        actionState = ActionStates.Sleep;
         canWalk = false;
+        animState = AnimationStates.Sleep;
         yield return new WaitForSeconds(sleepTime);
-        actionState = ActionStates.None;
         canWalk = true;
+        sleeping = false;
     }
 }
