@@ -40,6 +40,8 @@ public class EnemyController : MonoBehaviour
     private Vector3 fovEndPoint;
     private Vector3 increase;
 
+    [SerializeField] private LayerMask layerMask;
+
     Animator animator;
 
     [SerializeField] private float sleepTimer = 5f;
@@ -144,7 +146,7 @@ public class EnemyController : MonoBehaviour
         {
             fovDirection = (fovStartPoint + (increase*i)).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position+ fovOriginOffset, fovDirection, viewDistance, 7);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + fovOriginOffset, fovDirection, viewDistance, layerMask);
 
 
             //RaycastHit hit; Physics.Raycast(transform.position, fovDirection, out hit, viewDistance)

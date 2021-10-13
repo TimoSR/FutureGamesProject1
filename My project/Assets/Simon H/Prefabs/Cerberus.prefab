@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2826987041627213241}
   - component: {fileID: 2826987041627213246}
   - component: {fileID: 2826987041627213247}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Cerberus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 2826987042127211912}
   - component: {fileID: 2826987042127211913}
   - component: {fileID: 2826987042127211914}
-  m_Layer: 7
+  m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
