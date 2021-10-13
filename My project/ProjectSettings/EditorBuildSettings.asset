@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Sushant_files/Scenes/MainMenu.unity
+    guid: 48b73bf1fffccb04ab10c26a6fd295fb
+  - enabled: 1
+    path: Assets/Sushant_files/Scenes/Sushant_Working Game.unity
+    guid: 131b04c482bc165458b4d557599b7a87
   m_configObjects: {}
