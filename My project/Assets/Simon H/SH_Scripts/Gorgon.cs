@@ -16,6 +16,8 @@ public class Gorgon : MonoBehaviour
     public bool canWalk;
     public bool sleeping;
 
+    private bool canFire = true;
+
     [SerializeField] private float speed;
     private float directionX;
     private Vector3 moveTowardsPosition;
@@ -35,6 +37,12 @@ public class Gorgon : MonoBehaviour
 
     [SerializeField] private float sleepTimer = 5f;
     [SerializeField] private Vector3 fovOriginOffset = Vector3.zero;
+
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float projectileSpeed = 10f;
+
+    [SerializeField] private LayerMask layerMask;
+
 
     void Awake()
     {
@@ -149,7 +157,7 @@ public class Gorgon : MonoBehaviour
                         target = hit.transform.gameObject;
                     }
                     canSeeTarget = true;
-                    //Attack();
+                    Attack();
                 }
             }
             if (i < 2)
@@ -208,7 +216,6 @@ public class Gorgon : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             Destroy(other.gameObject);
-
             moveTowardsPosition = pointAPosition;
         }
         if (other.gameObject.tag == "PlayerProjectile")
@@ -228,6 +235,20 @@ public class Gorgon : MonoBehaviour
 
     void Attack()
     {
-
+        canWalk = false;
+        animState = AnimationStates.Attack;
+        if (canFire)
+        {
+            StartCoroutine(Fire(1f));
+        }
+    }
+    IEnumerator Fire(float timeBeforeNextAttack)
+    {
+        var projectile = Instantiate(projectilePrefab, new Vector3 (transform.position.x, transform.position.y + 0.8f), Quaternion.identity);
+        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.localScale.x * projectileSpeed, 0), ForceMode2D.Impulse);
+        Destroy(projectile, 2f);
+        canFire = false;
+        yield return new WaitForSeconds(timeBeforeNextAttack);
+        canFire = true;
     }
 }
