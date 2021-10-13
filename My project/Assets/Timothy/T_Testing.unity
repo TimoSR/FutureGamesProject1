@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 670189260}
   - component: {fileID: 670189263}
   - component: {fileID: 670189262}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -667,63 +667,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1399130838 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4913175014679054657, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-  m_PrefabInstance: {fileID: 4913175015183425214}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &1399130841
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399130838}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!61 &1399130842
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1399130838}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1658448637
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +832,7 @@ GameObject:
   - component: {fileID: 1907319898}
   - component: {fileID: 1907319901}
   - component: {fileID: 1907319900}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: Platform (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1069,7 +1012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2096026947}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: LevelPlatforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1099,21 +1042,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 406275761, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 12719998, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
+      propertyPath: JumpState
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2130657725904329988, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
+      propertyPath: JumpState
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913175014679054012, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
+      propertyPath: debugMode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4913175014629988702, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913175014679054657, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913175014679054657, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-      propertyPath: m_TagString
-      value: Player
+    - target: {fileID: 4913175014679054012, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 4104
       objectReference: {fileID: 0}
     - target: {fileID: 4913175015791598163, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
       propertyPath: m_RootOrder
@@ -1161,14 +1104,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4913175015791598165, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913175015791598165, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-      propertyPath: m_Layer
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 4913175015791598165, guid: 24267e81fcada2b44ba0060053b446ef, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
