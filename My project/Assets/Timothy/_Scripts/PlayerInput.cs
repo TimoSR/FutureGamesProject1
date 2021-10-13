@@ -32,7 +32,7 @@ public class PlayerInput : MonoBehaviour
             GetWeaponSwapInput();
         }
         
-        GetMenuInput();
+        //GetMenuInput();
 
     }
 
