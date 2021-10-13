@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class KeyLogic : MonoBehaviour
 {
-    private bool isFollowing;
+    public bool isFollowing;
     public float moveSpeed;
     public Transform objectToFollow;
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isFollowing)
@@ -23,9 +23,20 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        if (collision.tag == "Player")
         {
-            isFollowing = true;
+            if (!isFollowing)
+            {
+                Agent thePlayer = FindObjectOfType<Agent>();
+
+                objectToFollow = thePlayer.KeyFollowPoint;
+
+                isFollowing = true;
+                thePlayer.followingKey = this;
+            }
         }
+
+
+
     }
 }
