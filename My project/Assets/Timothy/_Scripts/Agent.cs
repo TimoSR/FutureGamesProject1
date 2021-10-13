@@ -7,11 +7,14 @@ using UnityEngine.Serialization;
 public class Agent : MonoBehaviour
 {
 
+    [field: SerializeField] private LayerMask _layerMask;
+    [field: SerializeField] private bool debugMode;
     public Rigidbody2D rb2d;
     public PlayerInput playerInput;
     public AgentAnimation animationManager;
-    public AgentRenderer agentRenderer; 
-    
+    public AgentRenderer agentRenderer;
+    public BoxCollider2D boxCollider2D;
+
     [field: SerializeField]
     float jumpForce = 10f;
 
@@ -21,6 +24,7 @@ public class Agent : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         animationManager = GetComponentInChildren<AgentAnimation>();
         agentRenderer = GetComponentInChildren<AgentRenderer>();
+        boxCollider2D = GetComponentInChildren<BoxCollider2D>();
     }
 
     private void Start()
@@ -33,8 +37,29 @@ public class Agent : MonoBehaviour
 
     private void Jump()
     {
+        if (debugMode == false)
+        {
+            if (IsGrounded())
+            {
+                rb2d.velocity = Vector2.up * jumpForce;
+            }
+        }
+        else
+        {
+            rb2d.velocity = Vector2.up * jumpForce;
+        }
+    }
         
-        rb2d.velocity = Vector2.up * jumpForce;
+
+    private bool IsGrounded()
+    {
+
+        var bounds = boxCollider2D.bounds;
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(bounds.center, bounds.size,
+            0f, Vector2.down, .1f, _layerMask);
+        Debug.Log(raycastHit2D);
+        return raycastHit2D.collider != null;
+
     }
 
     private void Movement(Vector2 input)
