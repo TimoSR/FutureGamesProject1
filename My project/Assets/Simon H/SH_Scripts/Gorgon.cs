@@ -2,16 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AnimationStates
-{
-    None,
-    Idle,
-    Walk,
-    Attack,
-    Sleep
-}
-
-public class EnemyController : MonoBehaviour
+public class Gorgon : MonoBehaviour
 {
     // Points the enemy will move between
     public Transform pointA;
@@ -32,8 +23,8 @@ public class EnemyController : MonoBehaviour
     private Vector3 pointBPosition;
 
     //Field of view still a work in progress
-    [SerializeField] private float fov = 120f;
-    [SerializeField] private float viewDistance = 5f;
+    [SerializeField] private float fov = 100f;
+    [SerializeField] private float viewDistance = 8f;
     private int rayCount = 60;
     private Vector3 fovDirection;
     private Vector3 fovStartPoint;
@@ -83,12 +74,12 @@ public class EnemyController : MonoBehaviour
         animator.SetInteger("AnimationState", (int)animState);
         GetDirection();
 
-        if (directionX != 0 && canWalk)
+        if (directionX != 0 && canWalk && !sleeping)
         {
             animState = AnimationStates.Walk;
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(moveTowardsPosition.x, transform.position.y), speed * Time.deltaTime);
         }
-        else if(!canWalk)
+        else if(!canWalk && !sleeping)
         {
             animState = AnimationStates.Idle;
         }
@@ -132,7 +123,7 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if (directionX == 0) 
+        if (directionX == 0 && !sleeping) 
         {
             animState = AnimationStates.Idle;
         }
@@ -157,8 +148,8 @@ public class EnemyController : MonoBehaviour
                     {
                         target = hit.transform.gameObject;
                     }
-                    moveTowardsPosition = target.transform.position;
                     canSeeTarget = true;
+                    //Attack();
                 }
             }
             if (i < 2)
@@ -212,13 +203,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+   void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
         {
-            // Kill Player
-            // Destroying the game object for now but implement a death function for the player if needed
             Destroy(other.gameObject);
+
             moveTowardsPosition = pointAPosition;
         }
         if (other.gameObject.tag == "PlayerProjectile")
@@ -226,13 +216,18 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(Sleep(sleepTimer));
         }
     }
-
-    IEnumerator Sleep(float sleepTime)
+    
+    public IEnumerator Sleep(float sleepTime)
     {
         canWalk = false;
         animState = AnimationStates.Sleep;
         yield return new WaitForSeconds(sleepTime);
         canWalk = true;
         sleeping = false;
+    }
+
+    void Attack()
+    {
+
     }
 }
