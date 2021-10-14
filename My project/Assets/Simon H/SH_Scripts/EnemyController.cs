@@ -14,24 +14,26 @@ public enum AnimationStates
 public class EnemyController : MonoBehaviour
 {
     // Points the enemy will move between
+    [Header("Points the enemy will move between")]
     public Transform pointA;
     public Transform pointB;
 
     // States
+    [Header("States")]
     public AnimationStates animState;
-
     private GameObject target;
     public bool canSeeTarget;
     public bool canWalk;
     public bool sleeping;
 
+    [Header("Speed")]
     [SerializeField] private float speed;
     private float directionX;
     private Vector3 moveTowardsPosition;
     private Vector3 pointAPosition;
     private Vector3 pointBPosition;
 
-    //Field of view still a work in progress
+    [Header("Field of View Settings")]
     [SerializeField] private float fov = 120f;
     [SerializeField] private float viewDistance = 5f;
     private int rayCount = 60;
@@ -42,10 +44,14 @@ public class EnemyController : MonoBehaviour
 
     Animator animator;
 
-    [SerializeField] private float sleepTimer = 5f;
+    
     [SerializeField] private Vector3 fovOriginOffset = Vector3.zero;
 
+    [Header("LayerMask (Set it to everything except enemies)")]
     [SerializeField] private LayerMask layerMask;
+
+    [Header("Sleep timer in seconds")]
+    [SerializeField] private float sleepTimer = 3f;
 
     void Awake()
     {
@@ -133,7 +139,7 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if (directionX == 0) 
+        if (directionX == 0 && !sleeping) 
         {
             animState = AnimationStates.Idle;
         }
