@@ -8,7 +8,7 @@ public class GorgonProjectile : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            // Do something with the player?
+            Destroy(other.gameObject); // Destroying the player for now but put the Death() here instead I guess
         }
         Destroy(this.gameObject);
     }
