@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class Agent : MonoBehaviour
@@ -21,6 +22,9 @@ public class Agent : MonoBehaviour
     
     [Header("State debugging")]
     public string stateName = "";
+    
+    [field: SerializeField]
+    private UnityEvent OnRespawnRequired { get; set;}
 
     [field: SerializeField]
     float jumpForce = 10f;
@@ -107,6 +111,6 @@ public class Agent : MonoBehaviour
 
     public void AgentDied()
     {
-        throw new NotImplementedException();
+        OnRespawnRequired?.Invoke();
     }
 }

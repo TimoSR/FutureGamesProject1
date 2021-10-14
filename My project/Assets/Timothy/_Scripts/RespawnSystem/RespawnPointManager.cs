@@ -5,47 +5,44 @@ using UnityEngine;
 
 public class RespawnPointManager : MonoBehaviour
 {
-   private List<RespawnPoint> _respawnPoints = new List<RespawnPoint>();
-   private RespawnPoint currentRespawnPoint;
+   public List<RespawnPoint> respawnPoints = new List<RespawnPoint>();
+   private RespawnPoint _currentRespawnPoint;
 
    private void Awake()
    {
-
       foreach (Transform item in transform)
       {
-         _respawnPoints.Add(item.GetComponent<RespawnPoint>());
+         respawnPoints.Add(item.GetComponent<RespawnPoint>());
       }
-
-      currentRespawnPoint = _respawnPoints[0];
-      
+      _currentRespawnPoint = respawnPoints[0];
    }
 
    public void UpdateRespawnPoint(RespawnPoint newRespawnPoint)
    {
-      currentRespawnPoint.DisableRespawnPoint();
-      currentRespawnPoint = newRespawnPoint;
+      _currentRespawnPoint.DisableRespawnPoint();
+      _currentRespawnPoint = newRespawnPoint;
    }
 
    public void Respawn(GameObject objectToRespawn)
    {
-      currentRespawnPoint.RespawnPlayer();
+      _currentRespawnPoint.RespawnPlayer();
       objectToRespawn.SetActive(true);
    }
 
-   public void RespawnAt(RespawnPoint respawnPoint, GameObject playerGO)
+   public void RespawnAt(RespawnPoint spawnPoint, GameObject playeGO)
    {
-      respawnPoint.SetPlayerGO(playerGO);
-      Respawn(playerGO);
+
+      spawnPoint.SetPlayerGO(playeGO);
+      Respawn(playeGO);
    }
 
-   public void ResetAllSpawnPoint()
+   public void ResetAllSpawnPoints()
    {
-      foreach (var item in _respawnPoints)
+      foreach (var item in respawnPoints)
       {
-         item.ResetRespawnPoint();;
+         item.ResetRespawnPoint();
       }
-
-      currentRespawnPoint = _respawnPoints[0];
+      _currentRespawnPoint = respawnPoints[0];
    }
    
 }
