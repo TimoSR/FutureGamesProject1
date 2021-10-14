@@ -220,7 +220,6 @@ public class EnemyController : MonoBehaviour
         {
             // Kill Player
             // Destroying the game object for now but implement a death function for the player if needed
-            Destroy(other.gameObject);
             moveTowardsPosition = pointAPosition;
         }
         if (other.gameObject.tag == "PlayerProjectile")
