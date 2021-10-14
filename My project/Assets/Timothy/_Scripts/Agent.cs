@@ -104,5 +104,9 @@ public class Agent : MonoBehaviour
         return raycastHit2D.collider != null;
 
     }
-    
+
+    public void AgentDied()
+    {
+        throw new NotImplementedException();
+    }
 }
