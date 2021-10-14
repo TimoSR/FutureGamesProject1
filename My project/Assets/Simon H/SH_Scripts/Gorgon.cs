@@ -4,26 +4,27 @@ using UnityEngine;
 
 public class Gorgon : MonoBehaviour
 {
-    // Points the enemy will move between
+    [Header("Points the enemy will move between")]
     public Transform pointA;
     public Transform pointB;
 
-    // States
+    [Header("States")]
     public AnimationStates animState;
-
     private GameObject target;
     public bool canSeeTarget;
     public bool canWalk;
     public bool sleeping;
 
+    private bool canFire = true;
+    [Header("Speed")]
     [SerializeField] private float speed;
     private float directionX;
     private Vector3 moveTowardsPosition;
     private Vector3 pointAPosition;
     private Vector3 pointBPosition;
 
-    //Field of view still a work in progress
-    [SerializeField] private float fov = 100f;
+    [Header("Field of View Settings")]
+    [SerializeField] private float fov = 90f;
     [SerializeField] private float viewDistance = 8f;
     private int rayCount = 60;
     private Vector3 fovDirection;
@@ -33,8 +34,20 @@ public class Gorgon : MonoBehaviour
 
     Animator animator;
 
-    [SerializeField] private float sleepTimer = 5f;
     [SerializeField] private Vector3 fovOriginOffset = Vector3.zero;
+
+    [Header("Projectile Settings")]
+    [SerializeField] private float projectilesPerSecond = 1;
+    [SerializeField] private GameObject projectilePrefab;
+    [SerializeField] private float projectileSpeed = 10f;
+
+    [Header("LayerMask (Set it to everything except enemies)")]
+    [SerializeField] private LayerMask layerMask;
+
+    [Header("Sleep timer in seconds")]
+    [SerializeField] private float sleepTimer = 5f;
+
+    private bool bounced;
 
     void Awake()
     {
@@ -44,11 +57,10 @@ public class Gorgon : MonoBehaviour
     }
     void Start()
     {
-
+        // Calculates the direction points the fov will be between
         fovStartPoint = new Vector3(Mathf.Sin((180-((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((180-((180-fov)/2))*Mathf.Deg2Rad)).normalized;
         fovEndPoint = new Vector3(Mathf.Sin((0+((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((0+((180-fov)/2))*Mathf.Deg2Rad)).normalized;
 
-        // Does this so that you won't get an error if you don't give the thing pointA and pointB positions
         if (pointA == null)
         {
             pointAPosition = new Vector3(transform.position.x, transform.position.y);
@@ -135,7 +147,7 @@ public class Gorgon : MonoBehaviour
         {
             fovDirection = (fovStartPoint + (increase*i)).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position+ fovOriginOffset, fovDirection, viewDistance, 7);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position+ fovOriginOffset, fovDirection, viewDistance, layerMask);
 
 
             //RaycastHit hit; Physics.Raycast(transform.position, fovDirection, out hit, viewDistance)
@@ -149,7 +161,10 @@ public class Gorgon : MonoBehaviour
                         target = hit.transform.gameObject;
                     }
                     canSeeTarget = true;
-                    //Attack();
+                    if(!sleeping)
+                    {
+                        Attack();
+                    }
                 }
             }
             if (i < 2)
@@ -203,31 +218,57 @@ public class Gorgon : MonoBehaviour
         }
     }
 
-   void OnCollisionEnter2D(Collision2D other)
+   
+    
+    public IEnumerator Sleep(float sleepTime)
+    {
+        canWalk = false;
+        animState = AnimationStates.Sleep;
+        if (!bounced)
+        {
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up*7, ForceMode2D.Impulse);
+            bounced = true;
+        }
+        yield return new WaitForSeconds(sleepTime);
+        if (!canSeeTarget && !bounced)
+            canWalk = true;
+        sleeping = false;
+    }
+
+    void Attack()
+    {
+        canWalk = false;
+        animState = AnimationStates.Attack;
+        if (canFire)
+        {
+            StartCoroutine(Fire(projectilesPerSecond));
+        }
+    }
+    IEnumerator Fire(float timeBeforeNextAttack)
+    {
+        var projectile = Instantiate(projectilePrefab, new Vector3 (transform.position.x, transform.position.y + 0.8f), Quaternion.identity);
+        projectile.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.localScale.x * projectileSpeed, 0), ForceMode2D.Impulse);
+        Destroy(projectile, 2f);
+        canFire = false;
+        yield return new WaitForSeconds(timeBeforeNextAttack);
+        canFire = true;
+        canWalk = true;
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
         {
             Destroy(other.gameObject);
-
             moveTowardsPosition = pointAPosition;
         }
         if (other.gameObject.tag == "PlayerProjectile")
         {
             StartCoroutine(Sleep(sleepTimer));
         }
-    }
-    
-    public IEnumerator Sleep(float sleepTime)
-    {
-        canWalk = false;
-        animState = AnimationStates.Sleep;
-        yield return new WaitForSeconds(sleepTime);
-        canWalk = true;
-        sleeping = false;
-    }
-
-    void Attack()
-    {
-
+        if (other.gameObject.tag == "Ground")
+        {
+            bounced = false;
+        }
     }
 }
