@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7763204970596651234}
   - component: {fileID: 7763204970596651235}
   - component: {fileID: 7763204970596651236}
+  - component: {fileID: 952049261288086826}
   m_Layer: 0
   m_Name: MusicProjectile
   m_TagString: Untagged
@@ -115,3 +116,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5da0b6f5590a24fa96d45c8c15a6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &952049261288086826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7763204970596651232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6806ebd3d77f037448586045943b9eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
+  rb: {fileID: 0}
