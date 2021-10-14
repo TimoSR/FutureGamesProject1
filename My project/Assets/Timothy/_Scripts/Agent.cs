@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class Agent : MonoBehaviour
@@ -9,33 +10,79 @@ public class Agent : MonoBehaviour
     [field: SerializeField] public Transform KeyFollowPoint;
     public KeyLogic followingKey;
 
-
-    [field: SerializeField] private LayerMask _layerMask;
     [field: SerializeField] private bool debugMode;
+    [field: SerializeField] private LayerMask _layerMask;
+    
     public Rigidbody2D rb2d;
-    public PlayerInput playerInput;
+    [FormerlySerializedAs("playerInput")] public PlayerInput agentInput;
     public AgentAnimation animationManager;
     public AgentRenderer agentRenderer;
     public BoxCollider2D boxCollider2D;
     
+    public State currentState = null, previousState = null;
+    public State idleState;
+    
+    [Header("State debugging")]
+    public string stateName = "";
+    
+    [field: SerializeField]
+    private UnityEvent OnRespawnRequired { get; set;}
 
     [field: SerializeField]
     float jumpForce = 10f;
 
     private void Awake()
     {
-        playerInput = GetComponentInParent<PlayerInput>();
+        agentInput = GetComponentInParent<PlayerInput>();
         rb2d = GetComponent<Rigidbody2D>();
         animationManager = GetComponentInChildren<AgentAnimation>();
         agentRenderer = GetComponentInChildren<AgentRenderer>();
         boxCollider2D = GetComponentInChildren<BoxCollider2D>();
+        
+        State[] states = GetComponentsInChildren<State>();
+        foreach (var state in states)
+        {
+            state.InitializeState(this);
+        }
     }
 
     private void Start()
     {
-        playerInput.OnMovement += Movement;
-        playerInput.OnMovement += agentRenderer.FaceDirection;
-        playerInput.OnJumpPressed += Jump;
+        agentInput.OnMovement += agentRenderer.FaceDirection;
+        TransitionToState(idleState);
+        agentInput.OnJumpPressed += Jump;
+    }
+
+    private void Update()
+    {
+        currentState.StateUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        currentState.StateFixedUpdate();
+    }
+
+    public void TransitionToState(State desiredState)
+    {
+        if (desiredState == null)
+            return;
+        if (currentState != null)
+            currentState.Exit();
+
+        previousState = currentState;
+        currentState = desiredState;
+        currentState.Enter();
+
+        DisplayState();
+    }
+
+    private void DisplayState()
+    {
+        if (previousState == null || previousState.GetType() != currentState.GetType())
+        {
+            stateName = currentState.GetType().ToString(); 
+        }
     }
 
     private void Jump()
@@ -52,9 +99,8 @@ public class Agent : MonoBehaviour
             rb2d.velocity = Vector2.up * jumpForce;
         }
     }
-        
-
-    private bool IsGrounded()
+    
+    public bool IsGrounded()
     {
 
         var bounds = boxCollider2D.bounds;
@@ -65,27 +111,8 @@ public class Agent : MonoBehaviour
 
     }
 
-    private void Movement(Vector2 input)
+    public void AgentDied()
     {
-        if (Mathf.Abs(input.x) > 0)
-        {
-            if (Mathf.Abs(rb2d.velocity.x) < 0.01f)
-            {
-                animationManager.PlayAnimation(AnimationType.run);
-            }
-            
-            rb2d.velocity = new Vector2(input.x*10, rb2d.velocity.y);
-            
-        }
-        else
-        {
-            
-            if (Mathf.Abs(rb2d.velocity.x) > 0)
-            {
-                animationManager.PlayAnimation(AnimationType.idle);
-            }
-            
-            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-        }
+        OnRespawnRequired?.Invoke();
     }
 }

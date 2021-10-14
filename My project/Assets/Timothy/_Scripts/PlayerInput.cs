@@ -14,60 +14,60 @@ public class PlayerInput : MonoBehaviour
 
     public event Action<Vector2> OnMovement;
 
-    public KeyCode weaponSwap = KeyCode.E, jumpKey = KeyCode.Space, attackKey = KeyCode.Mouse0, menuKey = KeyCode.Escape;
+    public KeyCode jumpKey, attackKey, menuKey;
 
-    public UnityEvent onMenuKeyPressed;
-    
-    
-    // Update is called once per frame
-    void Update()
+    public UnityEvent OnMenuKeyPressed;
+
+    private void Update()
     {
-        
-        // Input only listened to if Menu is closed 
-        if (Time.timeScale > 0)
+        if(Time.timeScale > 0)
         {
             GetMovementInput();
             GetJumpInput();
             GetAttackInput();
             GetWeaponSwapInput();
         }
-        
-        //GetMenuInput();
 
-    }
-
-    private void GetMenuInput()
-    {
-        throw new NotImplementedException();
+        GetMenuInput();
     }
 
     private void GetWeaponSwapInput()
     {
-        if (Input.GetKeyDown(weaponSwap))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             OnWeaponChange?.Invoke();
         }
     }
 
+    private void GetMenuInput()
+    {
+        if (Input.GetKeyDown(menuKey))
+        {
+            OnMenuKeyPressed?.Invoke();
+        }
+    }
+
     private void GetAttackInput()
     {
-        if (Input.GetKey(attackKey))
+        if (Input.GetKeyDown(attackKey))
         {
+
             OnAttack?.Invoke();
         }
     }
 
     private void GetJumpInput()
     {
-        if (Input.GetKey(jumpKey))
+        if (Input.GetKeyDown(jumpKey))
         {
             OnJumpPressed?.Invoke();
         }
-
-        if (Input.GetKey(jumpKey))
+        if (Input.GetKeyUp(jumpKey))
         {
             OnJumpReleased?.Invoke();
         }
+
+
     }
 
     private void GetMovementInput()
@@ -76,7 +76,7 @@ public class PlayerInput : MonoBehaviour
         OnMovement?.Invoke(MovementVector);
     }
 
-    private Vector2 GetMovementVector()
+    protected Vector2 GetMovementVector()
     {
         return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
