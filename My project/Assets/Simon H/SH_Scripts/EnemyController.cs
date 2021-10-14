@@ -233,7 +233,7 @@ public class EnemyController : MonoBehaviour
         }
         if (other.gameObject.tag == "PlayerProjectile")
         {
-            StartCoroutine(Sleep(sleepTimer));
+            sleeping = true;
         }
     }
 
