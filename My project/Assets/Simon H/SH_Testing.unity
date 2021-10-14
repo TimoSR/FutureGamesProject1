@@ -394,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746011226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.44, y: 4.07, z: 0}
+  m_LocalPosition: {x: 3.73, y: 4.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -537,7 +537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 169300775443025970, guid: 1595193ea2e18af4c8e743eb9cf9d384, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.065454
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 169300775443025970, guid: 1595193ea2e18af4c8e743eb9cf9d384, type: 3}
       propertyPath: m_LocalRotation.w
@@ -567,6 +567,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 169300775443025971, guid: 1595193ea2e18af4c8e743eb9cf9d384, type: 3}
+      propertyPath: fallingAsleep
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 169300775443025973, guid: 1595193ea2e18af4c8e743eb9cf9d384, type: 3}
       propertyPath: m_Name
       value: Hydra
@@ -580,6 +584,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3362477344277687245, guid: d60ee8452f401e94db95f2657857f70f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3362477344277687245, guid: d60ee8452f401e94db95f2657857f70f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3362477344351705102, guid: d60ee8452f401e94db95f2657857f70f, type: 3}
       propertyPath: m_Name
       value: GorgonEnemy
@@ -590,7 +602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3362477344351705103, guid: d60ee8452f401e94db95f2657857f70f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.65
+      value: -1.36
       objectReference: {fileID: 0}
     - target: {fileID: 3362477344351705103, guid: d60ee8452f401e94db95f2657857f70f, type: 3}
       propertyPath: m_LocalPosition.y

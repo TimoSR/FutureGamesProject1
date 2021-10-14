@@ -264,7 +264,7 @@ public class Gorgon : MonoBehaviour
         }
         if (other.gameObject.tag == "PlayerProjectile")
         {
-            StartCoroutine(Sleep(sleepTimer));
+            sleeping = true;
         }
         if (other.gameObject.tag == "Ground")
         {
