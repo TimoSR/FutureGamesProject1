@@ -14,24 +14,26 @@ public enum AnimationStates
 public class EnemyController : MonoBehaviour
 {
     // Points the enemy will move between
+    [Header("Points the enemy will move between")]
     public Transform pointA;
     public Transform pointB;
 
     // States
+    [Header("States")]
     public AnimationStates animState;
-
     private GameObject target;
     public bool canSeeTarget;
     public bool canWalk;
     public bool sleeping;
 
+    [Header("Speed")]
     [SerializeField] private float speed;
     private float directionX;
     private Vector3 moveTowardsPosition;
     private Vector3 pointAPosition;
     private Vector3 pointBPosition;
 
-    //Field of view still a work in progress
+    [Header("Field of View Settings")]
     [SerializeField] private float fov = 120f;
     [SerializeField] private float viewDistance = 5f;
     private int rayCount = 60;
@@ -40,12 +42,16 @@ public class EnemyController : MonoBehaviour
     private Vector3 fovEndPoint;
     private Vector3 increase;
 
-    [SerializeField] private LayerMask layerMask;
-
     Animator animator;
 
-    [SerializeField] private float sleepTimer = 5f;
+    
     [SerializeField] private Vector3 fovOriginOffset = Vector3.zero;
+
+    [Header("LayerMask (Set it to everything except enemies)")]
+    [SerializeField] private LayerMask layerMask;
+
+    [Header("Sleep timer in seconds")]
+    [SerializeField] private float sleepTimer = 3f;
 
     void Awake()
     {
@@ -59,7 +65,6 @@ public class EnemyController : MonoBehaviour
         fovStartPoint = new Vector3(Mathf.Sin((180-((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((180-((180-fov)/2))*Mathf.Deg2Rad)).normalized;
         fovEndPoint = new Vector3(Mathf.Sin((0+((180-fov)/2))*Mathf.Deg2Rad), Mathf.Cos((0+((180-fov)/2))*Mathf.Deg2Rad)).normalized;
 
-        // Does this so that you won't get an error if you don't give the thing pointA and pointB positions
         if (pointA == null)
         {
             pointAPosition = new Vector3(transform.position.x, transform.position.y);
@@ -134,7 +139,7 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        if (directionX == 0) 
+        if (directionX == 0 && !sleeping) 
         {
             animState = AnimationStates.Idle;
         }
@@ -146,10 +151,7 @@ public class EnemyController : MonoBehaviour
         {
             fovDirection = (fovStartPoint + (increase*i)).normalized;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position + fovOriginOffset, fovDirection, viewDistance, layerMask);
-
-
-            //RaycastHit hit; Physics.Raycast(transform.position, fovDirection, out hit, viewDistance)
+            RaycastHit2D hit = Physics2D.Raycast(transform.position+ fovOriginOffset, fovDirection, viewDistance, layerMask);
             Debug.DrawRay(transform.position + fovOriginOffset, fovDirection * viewDistance, Color.red);
             if(hit)
             {
@@ -159,7 +161,7 @@ public class EnemyController : MonoBehaviour
                     {
                         target = hit.transform.gameObject;
                     }
-                    moveTowardsPosition = target.transform.position;
+                    //moveTowardsPosition = target.transform.position;
                     canSeeTarget = true;
                 }
             }
@@ -177,6 +179,12 @@ public class EnemyController : MonoBehaviour
                         canWalk = true;
                     }
                 }
+                else if (canSeeTarget)
+                {
+                    canWalk = true;
+                    //moveTowardsPosition = target.transform.position;
+                }
+                
             }
         }
     }
@@ -220,11 +228,12 @@ public class EnemyController : MonoBehaviour
         {
             // Kill Player
             // Destroying the game object for now but implement a death function for the player if needed
+            Destroy(other.gameObject);
             moveTowardsPosition = pointAPosition;
         }
         if (other.gameObject.tag == "PlayerProjectile")
         {
-            StartCoroutine(Sleep(sleepTimer));
+            sleeping = true;
         }
     }
 
